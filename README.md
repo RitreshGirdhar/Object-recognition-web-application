@@ -15,6 +15,9 @@ docker build -t object-detection .
 ```
 
 
+
+
+
 * Lets understand the docker file
 ```
 FROM ubuntu
