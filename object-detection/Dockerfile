@@ -11,7 +11,7 @@ RUN pip3 install flask
 RUN apt install -y vim
 RUN apt install -y curl
 EXPOSE 5000
-RUN pip3 install -r requirements.txt
+#RUN pip3 install -r requirements.txt
 #RUN apt install -y opencv-contrib-python
-CMD python3 ./server2.py
+ENTRYPOINT python3 ./server.py
 #RUN apt install -y python3-opencv
