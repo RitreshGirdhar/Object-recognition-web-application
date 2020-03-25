@@ -1,17 +1,16 @@
-from flask import (
-    Flask,
-    render_template,
-    request,
-    send_from_directory
-)
+from flask import Flask, url_for, send_from_directory, request
 import logging, os
-import Detection1
+from werkzeug import secure_filename
 
-# Create the application instance
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__)
+file_handler = logging.FileHandler('server.log')
+app.logger.addHandler(file_handler)
+app.logger.setLevel(logging.INFO)
+
 PROJECT_HOME = os.path.dirname(os.path.realpath(__file__))
 UPLOAD_FOLDER = '{}/uploads/'.format(PROJECT_HOME)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 def create_new_folder(local_dir):
     newpath = local_dir
@@ -19,26 +18,20 @@ def create_new_folder(local_dir):
         os.makedirs(newpath)
     return newpath
 
-
-# Create a URL route in our application for "/"
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-@app.route('/detect', methods = ['POST'])
-def detect():
+@app.route('/', methods = ['POST'])
+def api_root():
+    app.logger.info(PROJECT_HOME)
     if request.method == 'POST' and request.files['image']:
-    	img_name = request.files['image']
+    	app.logger.info(app.config['UPLOAD_FOLDER'])
+    	img = request.files['image']
+    	img_name = secure_filename(img.filename)
     	create_new_folder(app.config['UPLOAD_FOLDER'])
     	saved_path = os.path.join(app.config['UPLOAD_FOLDER'], img_name)
     	app.logger.info("saving {}".format(saved_path))
-    	img_name.save(saved_path)
-    	Detection1.detectObject()
+    	img.save(saved_path)
     	return send_from_directory(app.config['UPLOAD_FOLDER'],img_name, as_attachment=True)
     else:
     	return "Where is the image?"
 
-
-# If we're running in stand alone mode, run the application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=False)
