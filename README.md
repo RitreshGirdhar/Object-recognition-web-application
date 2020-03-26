@@ -27,10 +27,11 @@ docker run -d -p80:80 object-detection
 * Open Browser and hit http://localhost/
 ![Home image](images/home.png)
 
-* Upload Image 
+* Upload Image and wait
 ![Upload image](images/upload_image.png)
 
-* 
+* See the list of object detected with probability
+![Object detected ](images/object_detect_image.png)
 
 #### Note::: use below command to download yolo.h5 
 ```

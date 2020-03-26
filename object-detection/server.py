@@ -52,7 +52,7 @@ def detect():
         strings2 = list()
         for eachObject in detections:
                strings2.append(eachObject["name"] + " : " + "{:10.2f}".format(eachObject["percentage_probability"]))
-        return render_template('result.html',sourceImage=img_name,newImage=img_name,data=strings2)
+        return render_template('detect.html',sourceImage=img_name,newImage=img_name,data=strings2)
     else:
     	return "Where is the image?"
 
