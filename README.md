@@ -21,6 +21,26 @@ pip3 install -U tensorflow keras opencv-python && pip3 install imageai
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * Build object-detection docker image
 ```
 cd object-detection
