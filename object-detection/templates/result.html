@@ -2,9 +2,15 @@
 
 <form method="POST" id="form1" action="http://localhost/detect"  enctype=multipart/form-data>
     <input type='file' id="image" name="image" />
-    <img id="blah" src="https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png" alt="your image" />
+    <img id="blah" src='http://localhost/get_image/source/{{sourceImage}}' alt="your image" />
     <input type="submit" value="submit"><br />
 </form>
+<img id="newImage" src='http://localhost/get_image/dest/{{newImage}}' alt="your image" />
+<ol>
+    {% for temp in data %}
+    <li>{{temp}}</li>
+    {% endfor %}
+</ol>
 
 <script>
     function readURL(input) {

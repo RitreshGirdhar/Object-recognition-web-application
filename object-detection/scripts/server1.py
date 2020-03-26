@@ -26,6 +26,7 @@ def api_root():
     	img = request.files['image']
     	img_name = secure_filename(img.filename)
     	create_new_folder(app.config['UPLOAD_FOLDER'])
+    	app.logger.info(os.path.join(app.config['UPLOAD_FOLDER'], img_name))
     	saved_path = os.path.join(app.config['UPLOAD_FOLDER'], img_name)
     	app.logger.info("saving {}".format(saved_path))
     	img.save(saved_path)
