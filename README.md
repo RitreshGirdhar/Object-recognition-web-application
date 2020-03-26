@@ -6,6 +6,41 @@ Rest based Api for object Recognition ~ to AWS Rekognization.
 
 ### Steps to build python based docker image
 
+* Install below pre-requisite components.
+```
+sudo apt install -y python3-pip
+sudo apt install -y python3-opencv
+
+pip3 install flask
+pip3 install -U tensorflow keras opencv-python && pip3 install imageai
+```
+
+*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * Build object-detection docker image
 ```
 cd object-detection
