@@ -1,82 +1,40 @@
 # Object-recongization-rest-api
+Rest based Api for object Recognition similar to AWS Rekognization.
 
-Rest based Api for object Recognition ~ to AWS Rekognization.
-
-###Idea is to build python based docker image which will expose Rest api to upload image and will give list of objects detected with new image.
+## Idea is to build python based docker image which will expose Rest api to upload image and will give list of objects detected with new image.
 
 ### Steps to build python based docker image
 
-* Install below pre-requisite components.
+* Checkout codebase
 ```
-sudo apt install -y python3-pip
-sudo apt install -y python3-opencv
-
-pip3 install flask
-pip3 install -U tensorflow keras opencv-python && pip3 install imageai
+git clone https://github.com/RitreshGirdhar/Object-recognition-rest-api.git
+cd Object-recognition-rest-api/
 ```
 
-*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* Build object-detection docker image
+* Let's build object-detection docker image
 ```
 cd object-detection
 docker build -t object-detection .
 ```
 
-
-
-
-* Lets understand the docker file
+* Run docker image object-detection
 ```
-FROM ubuntu
-VOLUME /app
-WORKDIR /app
-COPY . .
-RUN apt-get update
-RUN apt-get install -y python3-pip
-RUN pip3 install -U tensorflow keras opencv-python && pip3 install imageai
-RUN apt install -y wget
-RUN wget https://drive.google.com/file/d/1eT9uzsaV7koTex51G11v6c41MEND_3_B/view?usp=sharing
-RUN pip3 install flask
-RUN apt install -y vim
-RUN apt install -y curl
-EXPOSE 5000
-ENTRYPOINT python3 ./server.py
+docker run -d -p80:80 object-detection
 ```
 
-* Run object-detection
+### Let's test the application
+
+* Open Browser and hit http://localhost/
+![Home image](images/home.png)
+
+* Upload Image 
+![Upload image](images/upload_image.png)
+
+* 
+
+#### Note::: use below command to download yolo.h5 
 ```
-docker run -d -p3030:3030 object-detection
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1eT9uzsaV7koTex51G11v6c41MEND_3_B' -O yolo.h5
 ```
-* Access http://localhost:5000
-![Upload image](images/form.png)
 
-
-
-#### Note::: Download yolo.h5 from https://drive.google.com/file/d/1eT9uzsaV7koTex51G11v6c41MEND_3_B/view?usp=sharing
-
-Happy Learning !!!
+### Happy Learning !!!
